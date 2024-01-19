@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Learning API</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=pacifico" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=hind:300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=open+sans+condensed:300" rel="stylesheet">
+    <style>
+        body {
+            background-color: #624c82;
+            background-size: cover;
+            background-position: center;
+            font-family: 'open sans condensed';
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 12px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 12px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        <h1><strong>Customer churn prediction</strong></h1>
+
+        {% if prediction is not defined %}
+        <!-- Display the form when there is no prediction result -->
+        <form action="/predict" method="post">
+            <input type="text" name="Credit score" placeholder="Credit score" required='required'><br>
+            <input type="text" name="Country" placeholder="Country" required='required'><br>
+            <input type="text" name="gender" placeholder="Gender" required='required'><br>
+            <input type="text" name="Age" placeholder="Age" required='required'><br>
+            <input type="text" name="Tenure" placeholder="Tenure" required='required'><br>
+            <input type="text" name="Balance" placeholder="Balance" required='required'><br>
+            <input type="text" name="Products" placeholder="Products" required='required'><br>
+            <input type="text" name="Credit card" placeholder="Credit card" required='required'><br>
+            <input type="text" name="Active member" placeholder="Active member" required='required'><br>
+            <input type="text" name="Estimated Salary" placeholder="Estimated Salary" required='required'><br>
+
+            <button type='submit' class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        {% else %}
+        <!-- Display the prediction result if available -->
+        <div class="result">
+            <p>The prediction is: {{ prediction }}</p>
+        </div>
+        {% endif %}
+        {% if error is defined %}
+        <!-- Display the error message if an error occurs -->
+        <div class="result">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
